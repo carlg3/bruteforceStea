@@ -33,13 +33,15 @@ nella cartella in un file PDF.
 
 ## Come lo uso?
 
-Puoi clonare la repo ed usare:
+Puoi:
+* Scaricare l'exe dalla repo.
+* Clonare la repo ed usare:
 ```
 python bruteforceStea.py "path/to/video"
 ```
-o compilare l'exe, dopo aver correttamente installato i moduli che bruteforceStea usa, con
+* Compilare l'exe, dopo aver correttamente installato i moduli che bruteforceStea usa, con:
 ```
-pyinstaller -c -F -i bruteforceStea.py
+pyinstaller -c -F bruteforceStea.py
 ```
 -----------------------------------------------------------------------------------
 
