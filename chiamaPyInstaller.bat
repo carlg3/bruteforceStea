@@ -1,0 +1,1 @@
+pyinstaller -c -F -i Giovanni_Stea.ico bruteforceStea.py
