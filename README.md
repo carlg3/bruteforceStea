@@ -25,7 +25,7 @@ verra' usata una regione di default.
                                                                             
 Una volta terminata l'esecuzione del programma e' consigliabile controllare nelle 
 cartelle Non Classificate per accertarsi che il programma non abbia tralasciato   
-pagine. Fatto cio' e' possibile eseguire il programma una seconda volta specifican
+pagine. Fatto cio' e' possibile eseguire il programma una seconda volta specificando
 una cartella di immagini e l'opzione --convertiInPDF per trasformare le immagini  
 nella cartella in un file PDF.                                                    
                                                                             
