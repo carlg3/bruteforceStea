@@ -23,8 +23,8 @@ Fatto cio' e' possibile eseguire il programma una seconda volta specificando una
 
 ## Come lo uso?
 
-Puoi:
-* Scaricare l'exe dalla repo.
+Puoi optare per una di queste tre scelte:
+* Scaricare bruteforceStea.exe dalla repo.
 * Clonare la repo ed usare:
 ```
 python bruteforceStea.py "path/to/video"
