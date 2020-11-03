@@ -71,14 +71,23 @@ def selezionaRiquadroImmagine(immagine, titolo):
 		imageWidth = image.shape[1]
 		imageHeight = image.shape[0]
 
+		
 		fattoreScalaVerticale = screenHeight/imageHeight
 		fattoreScalaOrizzontale = screenWidth/imageWidth
-
+		
+		print(imageWidth) # nuovo
+		print(imageHeight)
+		print(fattoreScalaOrizzontale)
+		print(fattoreScalaVerticale)
+		
 		# scalo l'immagine se necesario per farla entrare nello schermo
 		if fattoreScalaOrizzontale < 1 or fattoreScalaVerticale < 1:
 			fattoreScala =  min(fattoreScalaVerticale, fattoreScalaOrizzontale)
-			if fattoreScala < 0.05:
+			print(fattoreScala)
+			
+			if fattoreScala > 0.05: # nuovo
 				fattoreScala = fattoreScala - 0.05
+			
 			finalWidth = int(image.shape[1] * fattoreScala)
 			finalHeight = int(image.shape[0] * fattoreScala)
 			finalDim = (finalWidth, finalHeight)
@@ -106,12 +115,13 @@ def selezionaRiquadroImmagine(immagine, titolo):
 			if fattoreScala != 1:
 				r0 = list(refPt[0])
 				r1 = list(refPt[1])
-				r0[0] = round(r0[0] * (1/(1-fattoreScala)))
+				r0[0] = round(r0[0] * (1/(1-fattoreScala))) # ci andava 1 - fattoreScala nuovo
 				r0[1] = round(r0[1] * (1/(1-fattoreScala)))
 
 				r1[0] = round(r1[0] * (1/(1-fattoreScala)))
 				r1[1] = round(r1[1] * (1/(1-fattoreScala)))
 				refPt = [tuple(r0), tuple(r1)]
+			print(refPt) # nuovo
 			return(refPt)
 		else:
 			return(False)
@@ -264,7 +274,8 @@ def UI():
 			intervallo = args.intervallo
 
 		if coordinateNumeroPagina == "":
-			coordinateNumeroPagina = [(950, 1700),(900, 1650)]
+			# non così coordinateNumeroPagina = [(950, 1700),(900, 1650)]  
+			coordinateNumeroPagina = [(1650, 900),(1700, 950)]
 
 
 		ris = [percorso, coordinateSlide, coordinateNumeroPagina, intervallo, verbose]

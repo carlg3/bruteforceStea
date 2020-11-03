@@ -56,16 +56,25 @@ def most_frequent(List):
     return max(set(List), key = List.count)
 
 def trovaPaginaSlide(percorso_foto):
-
+    #print(percorso_foto)
     img = cv2.imread(percorso_foto)
     height, width, _ = img.shape
-    
+    '''
+    print(img.shape)
+    print("coords!!!! ----> ",  coordsNumeroPagina1) # nuovo
+    print(coordsNumeroPagina1)
+    print(coordsNumeroPagina2)
+    print(coordsNumeroPagina3)
+    print(coordsNumeroPagina4)
+    '''    
     roi = img[coordsNumeroPagina2:coordsNumeroPagina4,coordsNumeroPagina1:coordsNumeroPagina3]
+    #print()
+    #print(roi.shape) # nuovo
     try:   
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         adaptive_threshold = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 9, 5)
         adaptive_mean = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
-    except:
+    except cv2.error: # ho inserito qua cv2.error nuovo
         printMagenta("\n Sembra che l'area del numero di pagina sia fuori dall'immagine. Se hai utilizzato l'opzione di default prova con quella manuale, senno' riprova comunque")
         sys.exit(1)
     custom_config = r'--oem 3 --psm 6 outputbase digits'
@@ -100,7 +109,7 @@ def organizzaSlide(cartella_lezioni,cartella_frame,nome_lezione):
     with IncrementalBar('', max=len(os.listdir(pathSlides)), suffix='%(index)d/%(max)d [%(elapsed_td)s/%(eta_td)s]') as bar:
         for i,nome_file in enumerate(os.listdir(pathSlides)):
             bar.next()
-
+        
             numeroP = trovaPaginaSlide(pathSlides+'\\'+nome_file)
 
             if(numeroP == 'NC'):
@@ -247,7 +256,7 @@ def controllaTesseract():
 def main():
     controllaTesseract()
     ris = gui.UI()
-    print(ris)
+   # print(ris)
     pathOL              = ris[0]
  #   printNormal(ris)
  #   printNormal(coordsSlide)
