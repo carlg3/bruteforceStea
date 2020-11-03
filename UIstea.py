@@ -75,15 +75,15 @@ def selezionaRiquadroImmagine(immagine, titolo):
 		fattoreScalaVerticale = screenHeight/imageHeight
 		fattoreScalaOrizzontale = screenWidth/imageWidth
 		
-		print(imageWidth) # nuovo
-		print(imageHeight)
-		print(fattoreScalaOrizzontale)
-		print(fattoreScalaVerticale)
+		# print(imageWidth) # nuovo
+		# print(imageHeight)
+		# print(fattoreScalaOrizzontale)
+		# print(fattoreScalaVerticale)
 		
 		# scalo l'immagine se necesario per farla entrare nello schermo
 		if fattoreScalaOrizzontale < 1 or fattoreScalaVerticale < 1:
 			fattoreScala =  min(fattoreScalaVerticale, fattoreScalaOrizzontale)
-			print(fattoreScala)
+			# print(fattoreScala)
 			
 			if fattoreScala > 0.05: # nuovo
 				fattoreScala = fattoreScala - 0.05
@@ -121,7 +121,7 @@ def selezionaRiquadroImmagine(immagine, titolo):
 				r1[0] = round(r1[0] * (1/(1-fattoreScala)))
 				r1[1] = round(r1[1] * (1/(1-fattoreScala)))
 				refPt = [tuple(r0), tuple(r1)]
-			print(refPt) # nuovo
+			# print(refPt) # nuovo
 			return(refPt)
 		else:
 			return(False)

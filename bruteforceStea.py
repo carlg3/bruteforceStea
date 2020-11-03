@@ -9,7 +9,7 @@ from progress.bar import IncrementalBar
 
 nomeFilePercorsoTesseract = "pathTesseract.txt"
 try:
-    percorsoTesseract = open(nomeFilePercorsoTesseract, "r").read()
+    percorsoTesseract = open(nomeFilePercorsoTesseract, "r").read().partition('\n')[0]
     pytesseract.pytesseract.tesseract_cmd = percorsoTesseract
 except FileNotFoundError:
     printError("pathTesseract.txt non e' stato trovato. Controlla che sia nella stessa cartella dell'eseguibile")
@@ -70,11 +70,11 @@ def trovaPaginaSlide(percorso_foto):
     roi = img[coordsNumeroPagina2:coordsNumeroPagina4,coordsNumeroPagina1:coordsNumeroPagina3]
     #print()
     #print(roi.shape) # nuovo
-    try:   
+    try:  
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         adaptive_threshold = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 9, 5)
         adaptive_mean = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
-    except cv2.error: # ho inserito qua cv2.error nuovo
+    except cv2.error: 
         printMagenta("\n Sembra che l'area del numero di pagina sia fuori dall'immagine. Se hai utilizzato l'opzione di default prova con quella manuale, senno' riprova comunque")
         sys.exit(1)
     custom_config = r'--oem 3 --psm 6 outputbase digits'
@@ -86,7 +86,7 @@ def trovaPaginaSlide(percorso_foto):
     except KeyboardInterrupt:
         raise
     except:
-        printMagenta("Tesseract non e' stato trovato, controlla di averlo installato e che il percorso in " + nomeFilePercorsoTesseract + " sia corretto")
+        printMagenta("\nTesseract non e' stato trovato, controlla di averlo installato e che il percorso " + nomeFilePercorsoTesseract + " sia corretto")
         sys.exit(1)
 
 
