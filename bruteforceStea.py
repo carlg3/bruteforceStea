@@ -1,5 +1,5 @@
 import os, cv2, pytesseract, shutil, sys,re
-import UIsteaGiacomo as gui
+import UIstea as gui
 from utilityStea import controllaEstensione, printError, printWarning, printGood, printInfo, printMagenta, printCyan, printNormal
 from progress.bar import IncrementalBar
 
