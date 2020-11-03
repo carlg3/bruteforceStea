@@ -75,8 +75,10 @@ def selezionaRiquadroImmagine(immagine, titolo):
 		fattoreScalaOrizzontale = screenWidth/imageWidth
 
 		# scalo l'immagine se necesario per farla entrare nello schermo
-		if fattoreScalaOrizzontale < 1 and fattoreScalaVerticale < 1:
-			fattoreScala =  max(fattoreScalaVerticale, fattoreScalaOrizzontale) - 0.1
+		if fattoreScalaOrizzontale < 1 or fattoreScalaVerticale < 1:
+			fattoreScala =  min(fattoreScalaVerticale, fattoreScalaOrizzontale)
+			if fattoreScala < 0.05:
+				fattoreScala = fattoreScala - 0.05
 			finalWidth = int(image.shape[1] * fattoreScala)
 			finalHeight = int(image.shape[0] * fattoreScala)
 			finalDim = (finalWidth, finalHeight)
@@ -136,7 +138,7 @@ def estraiEChiedi(video, titolo, ver, t = 15):
 		if coordinate == False:
 			return 1
 		elif coordinate == "NV":
-			return estraiEChiedi(video, titolo, ver, t + 30)
+			return estraiEChiedi(video, titolo, ver, t + 15)
 		else:
 			return coordinate
 

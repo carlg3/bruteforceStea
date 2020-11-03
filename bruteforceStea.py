@@ -59,16 +59,15 @@ def trovaPaginaSlide(percorso_foto):
 
     img = cv2.imread(percorso_foto)
     height, width, _ = img.shape
-
+    
     roi = img[coordsNumeroPagina2:coordsNumeroPagina4,coordsNumeroPagina1:coordsNumeroPagina3]
     try:   
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         adaptive_threshold = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 9, 5)
         adaptive_mean = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 2)
     except:
-        printMagenta("Sembra che l'area del numero di pagina sia fuori dall'immagine. Se hai utilizzato l'opzione di default prova con quella manuale")
+        printMagenta("\n Sembra che l'area del numero di pagina sia fuori dall'immagine. Se hai utilizzato l'opzione di default prova con quella manuale, senno' riprova comunque")
         sys.exit(1)
-
     custom_config = r'--oem 3 --psm 6 outputbase digits'
     try:
         arr_adaptive_threshold = pytesseract.image_to_string(adaptive_threshold, config=custom_config) # 1. adaptive
@@ -248,6 +247,7 @@ def controllaTesseract():
 def main():
     controllaTesseract()
     ris = gui.UI()
+    print(ris)
     pathOL              = ris[0]
  #   printNormal(ris)
  #   printNormal(coordsSlide)
