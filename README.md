@@ -4,7 +4,7 @@
                                                                             
 ## Cos'è?                                                                             
                                                                             
-Un programma per prendere le slide che mostrano a video durante le lezioni.       
+Un programma per prendere le slide che vengono mostrate a video durante le lezioni.       
                                                                             
 ## Come funziona?                                                                    
                                                                             
