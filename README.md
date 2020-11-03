@@ -24,7 +24,7 @@ Fatto ciò è possibile eseguire il programma una seconda volta specificando una
 ## Come lo uso?
 Scarica ed installa Tesseract da [qui](https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-alpha.20200328.exe) e inserisci in pathTesseract.txt il percorso dov'è installato.
 Puoi optare dopo per una di queste tre scelte:
-* Scaricare bruteforceStea.exe dalla repo. *_(scelta consigliata)_*
+* Scaricare bruteforceStea.exe dalla repo. *__(scelta consigliata)__*
 * Clonare la repo ed usare:
 ```
 python bruteforceStea.py "path/to/video"
