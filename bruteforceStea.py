@@ -219,7 +219,6 @@ def doOCR(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni):
         ritagliaImmaginiInCartella(pathSlideLezione+'\\'+'NonClassificate')
 
 def slideOCR(cartella_lezioni, cartella_frame):
-    # creo la cartella per tutte le slide, se c'e' gia' passa non la crea
     dirname,name = os.path.split(cartella_lezioni)
     filename = os.path.splitext(os.path.basename(cartella_lezioni))[0]
 
@@ -253,7 +252,6 @@ def main():
  #   printNormal(ris)
  #   printNormal(coordsSlide)
 
-    # ma lo sai che puoi mettere global e poi tutte le variabili di fila??????
     global verbosity
     global coordsSlide1
     global coordsSlide2
@@ -262,7 +260,7 @@ def main():
     global coordsNumeroPagina1
     global coordsNumeroPagina2
     global coordsNumeroPagina3
-    global coordsNumeroPagina4 # global 1,2,3,4
+    global coordsNumeroPagina4 
     
     coordsSlide1 = ris[1][0][0]
     coordsSlide2 = ris[1][0][1]
