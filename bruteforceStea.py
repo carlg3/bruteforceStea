@@ -7,7 +7,20 @@ from progress.bar import IncrementalBar
 #################### VARIABILI ##########################################
 #########################################################################
 
+
+# nomeFilePercorsoTesseract = os.path.dirname(os.path.realpath(__file__)) + "\\pathTesseract.txt"
 nomeFilePercorsoTesseract = "pathTesseract.txt"
+
+# faccio in modo che il file contentente il percorso a tesseract venga trovato indipendentemente da come e dove
+#   viene eseguito questo script
+
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+elif __file__:
+    application_path = os.path.dirname(__file__)
+
+nomeFilePercorsoTesseract = os.path.join(application_path, nomeFilePercorsoTesseract)
+
 try:
     percorsoTesseract = open(nomeFilePercorsoTesseract, "r").read().partition('\n')[0]
     pytesseract.pytesseract.tesseract_cmd = percorsoTesseract
@@ -248,6 +261,7 @@ def slideOCR(cartella_lezioni, cartella_frame):
             doOCR(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni)
       
 def controllaTesseract():
+
     if not os.path.isfile(percorsoTesseract):
         printError("\nSembra che tu non abbia installato Tessract o che il percorso specificato in " + percorsoTesseract +" non sia valido, controlla e riprova\n")
         sys.exit(1)
