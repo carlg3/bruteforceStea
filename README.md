@@ -37,7 +37,7 @@ python bruteforceStea.py "path/to/video"
 pyinstaller -c -F bruteforceStea.py
 ```
 *__IMPORTANTE__*: Fare doppio click sull'exe non funziona, deve essere eseguito da terminale 
-# Aggiungere l'eseguibile a Path
+### Aggiungere l'eseguibile a Path
 Per poter eseguire il programma senza doversi necessariamente trovare nella cartella che lo contiene è possibile aggiungerlo alla variabile di sistema "Path", assicurandosi che il file "pathTesseract.txt" si trovi sempre nella stessa cartella dell'eseguibile.
 
 -----------------------------------------------------------------------------------
