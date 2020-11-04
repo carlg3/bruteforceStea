@@ -36,6 +36,8 @@ python bruteforceStea.py "path/to/video"
 ```
 pyinstaller -c -F bruteforceStea.py
 ```
+*__IMPORTANTE__*: Fare doppio click sull'exe non funziona, deve essere eseguito da terminale 
+
 -----------------------------------------------------------------------------------
 
 Passa al programma l'argomento -h per maggiori info sui comandi!  
