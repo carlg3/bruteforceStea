@@ -38,8 +38,10 @@ pyinstaller -c -F bruteforceStea.py
 ```
 *__IMPORTANTE__*: Fare doppio click sull'exe non funziona, deve essere eseguito da terminale 
 ### Aggiungere l'eseguibile a Path
-Per poter eseguire il programma senza doversi necessariamente trovare nella cartella che lo contiene è possibile aggiungerlo alla variabile di sistema "Path", assicurandosi che il file "pathTesseract.txt" si trovi sempre nella stessa cartella dell'eseguibile.
-
+Per poter eseguire il programma senza doversi necessariamente trovare nella cartella che lo contiene è possibile aggiungerlo alla variabile d'ambiente "Path", assicurandosi che il file "pathTesseract.txt" si trovi sempre nella stessa cartella dell'eseguibile.
+#### Windows
+Pannello di controllo -> Sistema e sicurezza -> Sistema -> Impostazioni di sistema avanzate -> Variabili d'ambiente
+  Cliccare su Path, poi su Modifica e su Nuovo. Incollare nella cartella di testo il percoros completo alla cartella contenente l'eseguibile (e pathTesseract.txt)
 -----------------------------------------------------------------------------------
 
 Passa al programma l'argomento -h per maggiori info sui comandi!  
