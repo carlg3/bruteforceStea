@@ -12,7 +12,7 @@ Il programma prende in ingresso un video o una cartella contenete uno o più vid
                                                                             
 ----------------------------------------------------------------------------------
                                                                             
-L'utente deve selezionare la regione frame che intende ritagliare e eventualmente la porzione contente il numero di pagina, in caso questa non fosse specificata verrà usata una regione di default.                                              
+L'utente deve selezionare la regione frame che intende ritagliare e eventualmente la porzione contente il numero di pagina, in caso questa non fosse specificata verrà usata una regione di default (valida per i video di Microsoft Stream).                                    
                                                                             
 ----------------------------------------------------------------------------------
                                                                             
