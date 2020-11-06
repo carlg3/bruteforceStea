@@ -166,7 +166,10 @@ def organizzaSlide(cartella_lezioni,cartella_frame,nome_lezione):
 
 def prendiUltimeSlide(listSlide):
     aggiornate = []
-    ultimaAggiornata = listSlide[0]
+    try:
+        ultimaAggiornata = listSlide[0]
+    except IndexError:
+        printError("C'e' stato un problema con le Slide! Ma non temere, riprova!")
     ultimaPagina = listSlide[0]["numeroPagina"]
 
     for i in listSlide:
