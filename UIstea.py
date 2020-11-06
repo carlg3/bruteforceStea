@@ -54,7 +54,7 @@ def selezionaRiquadroImmagine(immagine, titolo):
 				cancella = True
 				
 
-		#uso tkinter per prendere le dimensioni dello schermo
+		# uso tkinter per prendere le dimensioni dello schermo
 		root = tkinter.Tk()
 		screenWidth = root.winfo_screenwidth()
 		screenHeight = root.winfo_screenheight()
@@ -74,16 +74,16 @@ def selezionaRiquadroImmagine(immagine, titolo):
 		
 		fattoreScalaVerticale = screenHeight/imageHeight
 		fattoreScalaOrizzontale = screenWidth/imageWidth
-		
-		# print(imageWidth) # nuovo
-		# print(imageHeight)
-		# print(fattoreScalaOrizzontale)
-		# print(fattoreScalaVerticale)
-		
+		'''
+		print(imageWidth) # nuovo
+		print(imageHeight)
+		print(fattoreScalaOrizzontale)
+		print(fattoreScalaVerticale)
+		'''
 		# scalo l'immagine se necesario per farla entrare nello schermo
 		if fattoreScalaOrizzontale < 1 or fattoreScalaVerticale < 1:
 			fattoreScala =  min(fattoreScalaVerticale, fattoreScalaOrizzontale)
-			# print(fattoreScala)
+			print(fattoreScala)
 			
 			if fattoreScala > 0.05: # nuovo
 				fattoreScala = fattoreScala - 0.05
@@ -115,13 +115,19 @@ def selezionaRiquadroImmagine(immagine, titolo):
 			if fattoreScala != 1:
 				r0 = list(refPt[0])
 				r1 = list(refPt[1])
-				r0[0] = round(r0[0] * (1/(1-fattoreScala))) # ci andava 1 - fattoreScala nuovo
-				r0[1] = round(r0[1] * (1/(1-fattoreScala)))
-
-				r1[0] = round(r1[0] * (1/(1-fattoreScala)))
-				r1[1] = round(r1[1] * (1/(1-fattoreScala)))
+				'''
+				print('***')
+				print(r0[0])
+				print(r0[1])
+				print(r1[0])
+				print(r1[1])
+				'''	
+				r0[0] = round(r0[0] * (1/(fattoreScala))) # ci andava 1 - fattoreScala nuovo
+				r0[1] = round(r0[1] * (1/(fattoreScala)))
+				r1[0] = round(r1[0] * (1/(fattoreScala)))
+				r1[1] = round(r1[1] * (1/(fattoreScala)))
 				refPt = [tuple(r0), tuple(r1)]
-			# print(refPt) # nuovo
+			print(refPt) # nuovo
 			return(refPt)
 		else:
 			return(False)

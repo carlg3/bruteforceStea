@@ -52,6 +52,10 @@ def ritagliaImmaginiInCartella(cartella):
                 if controllaEstensione(filename, "immagine") and os.path.isfile(root +'\\'+ filename):
                     try:
                         image = cv2.imread(cartella +'\\'+ filename)
+                        print(coordsSlide2)
+                        print(coordsSlide4)
+                        print(coordsSlide1)
+                        print(coordsSlide3)
                         cropped = image[coordsSlide2:coordsSlide4, coordsSlide1:coordsSlide3]
                         nomeFile = re.split("([\d\w_?\-. \(\)]+).(..[\d\w]+)", filename)[1]
                         cv2.imwrite(root +'\\'+ nomeFile + ".jpg", cropped)
