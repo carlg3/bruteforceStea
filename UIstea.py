@@ -83,7 +83,8 @@ def selezionaRiquadroImmagine(immagine, titolo):
 		# scalo l'immagine se necesario per farla entrare nello schermo
 		if fattoreScalaOrizzontale < 1 or fattoreScalaVerticale < 1:
 			fattoreScala =  min(fattoreScalaVerticale, fattoreScalaOrizzontale)
-			print(fattoreScala)
+			
+			# print(fattoreScala)
 			
 			if fattoreScala > 0.05: # nuovo
 				fattoreScala = fattoreScala - 0.05
@@ -110,7 +111,7 @@ def selezionaRiquadroImmagine(immagine, titolo):
 				return ("NV")
 
 		# if there are two reference points, then crop the region of interest
-		# from teh image and display it
+		# from the image and display it
 		if len(refPt) == 2:
 			if fattoreScala != 1:
 				r0 = list(refPt[0])
@@ -127,7 +128,7 @@ def selezionaRiquadroImmagine(immagine, titolo):
 				r1[0] = round(r1[0] * (1/(fattoreScala)))
 				r1[1] = round(r1[1] * (1/(fattoreScala)))
 				refPt = [tuple(r0), tuple(r1)]
-			print(refPt) # nuovo
+			# print(refPt) # nuovo
 			return(refPt)
 		else:
 			return(False)

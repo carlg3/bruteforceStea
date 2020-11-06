@@ -52,10 +52,12 @@ def ritagliaImmaginiInCartella(cartella):
                 if controllaEstensione(filename, "immagine") and os.path.isfile(root +'\\'+ filename):
                     try:
                         image = cv2.imread(cartella +'\\'+ filename)
+                        '''
                         print(coordsSlide2)
                         print(coordsSlide4)
                         print(coordsSlide1)
                         print(coordsSlide3)
+                        '''
                         cropped = image[coordsSlide2:coordsSlide4, coordsSlide1:coordsSlide3]
                         nomeFile = re.split("([\d\w_?\-. \(\)]+).(..[\d\w]+)", filename)[1]
                         cv2.imwrite(root +'\\'+ nomeFile + ".jpg", cropped)
@@ -85,8 +87,10 @@ def trovaPaginaSlide(percorso_foto):
     print(coordsNumeroPagina4)
     '''    
     roi = img[coordsNumeroPagina2:coordsNumeroPagina4,coordsNumeroPagina1:coordsNumeroPagina3]
-    #print()
-    #print(roi.shape) # nuovo
+    '''
+    print()
+    print(roi.shape) # nuovo 
+    '''
     try:  
         gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
         adaptive_threshold = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 9, 5)
@@ -169,7 +173,7 @@ def prendiUltimeSlide(listSlide):
     try:
         ultimaAggiornata = listSlide[0]
     except IndexError:
-        printError("C'e' stato un problema con le Slide! Ma non temere, riprova!")
+        printError("\nC'e' stato un problema con le Slide! Ma non temere, riprova!\n")
     ultimaPagina = listSlide[0]["numeroPagina"]
 
     for i in listSlide:
