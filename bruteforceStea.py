@@ -172,9 +172,10 @@ def prendiUltimeSlide(listSlide):
     aggiornate = []
     try:
         ultimaAggiornata = listSlide[0]
+        ultimaPagina = listSlide[0]["numeroPagina"]
     except IndexError:
-        printError("\nC'e' stato un problema con le Slide! Ma non temere, riprova!\n")
-    ultimaPagina = listSlide[0]["numeroPagina"]
+        printError("\nC'e' stato un problema con le Slide!\nControlla che fra le videolezioni non ci siano anche quelle di esercitazione Assembly e nel caso toglile, perché non mostra slide e al programma non piacciono\n")
+        sys.exit(1)
 
     for i in listSlide:
         if ultimaPagina != i["numeroPagina"]:
@@ -281,10 +282,10 @@ def controllaTesseract():
 def main():
     controllaTesseract()
     ris = gui.UI()
-   # print(ris)
+# print(ris)
     pathOL              = ris[0]
- #   printNormal(ris)
- #   printNormal(coordsSlide)
+# printNormal(ris)
+# printNormal(coordsSlide)
 
     global verbosity
     global coordsSlide1
@@ -308,7 +309,7 @@ def main():
     tempo               = ris[3]
     verbosity           = ris[4]
 
-    ''''
+    '''
     printNormal("pathOL            " + str(pathOL))
     printNormal("coordsSlide       " + str(coordsSlide))
     printNormal("coordsSlide1       " + str(coordsSlide1))
