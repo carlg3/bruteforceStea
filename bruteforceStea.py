@@ -174,7 +174,7 @@ def prendiUltimeSlide(listSlide):
         ultimaAggiornata = listSlide[0]
         ultimaPagina = listSlide[0]["numeroPagina"]
     except IndexError:
-        printError("\nC'e' stato un problema con le Slide! Ma non temere, riprova!\n")
+        printError("\nC'e' stato un problema con le Slide!\nControlla che fra le videolezioni non ci siano anche quelle di esercitazione Assembly e nel caso toglile, perché non mostra slide e al programma non piacciono\n")
         sys.exit(1)
 
     for i in listSlide:
