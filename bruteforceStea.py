@@ -174,8 +174,7 @@ def prendiUltimeSlide(listSlide):
         ultimaAggiornata = listSlide[0]
         ultimaPagina = listSlide[0]["numeroPagina"]
     except IndexError:
-        printError("\nC'e' stato un problema con le Slide!\nControlla che fra le videolezioni non ci siano anche quelle di esercitazione Assembly e nel caso toglile, perché non mostra slide e al programma non piacciono\n")
-        sys.exit(1)
+        return False
 
     for i in listSlide:
         if ultimaPagina != i["numeroPagina"]:
@@ -246,10 +245,14 @@ def doOCR(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni):
 
         slide1 = organizzaSlide(cartella_lezioni,cartella_frame,dataLezione)
         slide2 = prendiUltimeSlide(slide1)
-        spostaSlide(slide2, pathLezione, pathSlideLezione)
-        # printNormal(pathSlideLezione)
-        ritagliaImmaginiInCartella(pathSlideLezione)
-        ritagliaImmaginiInCartella(pathSlideLezione+'\\'+'NonClassificate')
+        if slide2 == False:
+            printError("\nC'e' stato un problema con le Slide di "+ dataLezione + "!\nControlla che fra le videolezioni non ci siano anche quelle di esercitazione Assembly e nel caso toglile, \
+                perché non mostra slide e al programma non piacciono\n") # se slide2 è false, quindi c'è stato qualche problema
+        else:
+            spostaSlide(slide2, pathLezione, pathSlideLezione)
+            # printNormal(pathSlideLezione)
+            ritagliaImmaginiInCartella(pathSlideLezione)
+            ritagliaImmaginiInCartella(pathSlideLezione+'\\'+'NonClassificate')
 
 def slideOCR(cartella_lezioni, cartella_frame):
     dirname,name = os.path.split(cartella_lezioni)
