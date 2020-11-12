@@ -1,6 +1,6 @@
 from colorama import init, Fore, Style
 from PIL import Image
-import os, sys
+import os, sys, re
 
 def printError(s):
 	init()
@@ -54,7 +54,7 @@ def controllaEstensione(s, tipo):
 	return False
 
 
-def convertiInPDF(cartella):
+def convertiInPDF(cartella, ordinamento):
 		cartella = sys.argv[1]
 		listaImmagini = []
 		nomePDF = "slides"
@@ -62,10 +62,18 @@ def convertiInPDF(cartella):
 			printError("Il percorso non e' una cartella")
 		else:
 			for root, dirs, files in os.walk(cartella, topdown=True):
+				if ordinamento == 'a':
+					files.sort()
+				elif ordinamento == 'n':
+					try:
+						files.sort(key=lambda x: int(re.split("([\d\w_?\-. \(\)]+).(..[\d\w]+)", x)[1]))
+					except ValueError:
+						printError("Uno dei file contiene lettere nel nome. Correggi il nome o prova con un'altra opzione")
+						sys.exit(1)
 				for filename in files:
 					if controllaEstensione(filename, "immagine") and os.path.isfile(cartella + "\\" + filename):
 						immagine = Image.open(r'' + cartella + "\\" + filename)
 						immagineConvertita = immagine.convert('RGB')
 						listaImmagini.append(immagineConvertita)
 
-		listaImmagini[0].save(r'' + cartella + "\\" + nomePDF +'.pdf', save_all=True, append_images=listaImmagini)
+		listaImmagini[0].save(r'' + cartella + "\\" + nomePDF +'.pdf', save_all=True, append_images=listaImmagini[1:])

@@ -188,7 +188,7 @@ def prendiUltimeSlide(listSlide):
 def spostaSlide(slideDaPrendere, pathSorgente, nuovaPathDest):
     numeroSlide = 0
     for item in slideDaPrendere:
-    numeroSlide = numeroSlide + 1
+        numeroSlide = numeroSlide + 1
         nome = item['nomeFile']
         pg = item['numeroPagina']
         shutil.move(pathSorgente + '\\' + nome, nuovaPathDest + '\\' + str(pg) + '.jpg')
