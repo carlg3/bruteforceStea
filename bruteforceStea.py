@@ -186,11 +186,14 @@ def prendiUltimeSlide(listSlide):
     return aggiornate
 
 def spostaSlide(slideDaPrendere, pathSorgente, nuovaPathDest):
+    numeroSlide = 0
     for item in slideDaPrendere:
+    numeroSlide = numeroSlide + 1
         nome = item['nomeFile']
         pg = item['numeroPagina']
-        printCyan("Sposto Slide in:  "+ nuovaPathDest + '\\' + str(pg) + '.jpg')
         shutil.move(pathSorgente + '\\' + nome, nuovaPathDest + '\\' + str(pg) + '.jpg')
+        
+    printCyan("Sposto ", numeroSlide, " Slide in:  "+ nuovaPathDest)
 
 #********************************* FUNZIONI FFMPEG E MAIN OCR *************************************************
 
@@ -246,8 +249,7 @@ def doOCR(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni):
         slide1 = organizzaSlide(cartella_lezioni,cartella_frame,dataLezione)
         slide2 = prendiUltimeSlide(slide1)
         if slide2 == False:
-            printError("\nC'e' stato un problema con le Slide di "+ dataLezione + "!\nControlla che fra le videolezioni non ci siano anche quelle di esercitazione Assembly e nel caso toglile, \
-                perché non mostra slide e al programma non piacciono\n") # se slide2 è false, quindi c'è stato qualche problema
+            printError("\n C'e' stato un problema con le Slide di "+ dataLezione + "!\nControlla che non siano quelle di esercitazione Assembly e nel caso toglile, non ci sono slide e al programma questa cosa non piace\n") # se slide2 è false, quindi c'è stato qualche problema
         else:
             spostaSlide(slide2, pathLezione, pathSlideLezione)
             # printNormal(pathSlideLezione)
