@@ -37,7 +37,7 @@ python bruteforceStea.py "path/to/video"
 pyinstaller -c -F bruteforceStea.py
 ```
 
-### Conversione in PDF
+  #### Conversione in PDF
 Dopo aver controllato che i numeri di pagina siano corretti puoi mettere in una cartella tutte le immagini che ti interessano e chiamare il programma con l'opzione ```-c``` specificando il percorso della cartella per convertire tutte le immagini in un file PDF. 
 ```
 bruteforceStea.exe cartella/con/le/immagini -c
