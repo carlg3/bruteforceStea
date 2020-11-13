@@ -46,6 +46,7 @@ Di default il pdf viene creato ordinando le pagine numericamente in base al nome
 ```
 bruteforceStea.exe cartella/con/le/immagini -c a
 ```
+----------------------------------------------------------------------------------
 
 *__IMPORTANTE__*: Fare doppio click sull'exe non funziona, deve essere eseguito da terminale 
 ### Aggiungere l'eseguibile a Path
