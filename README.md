@@ -36,6 +36,17 @@ python bruteforceStea.py "path/to/video"
 ```
 pyinstaller -c -F bruteforceStea.py
 ```
+
+### Conversione in PDF
+Dopo aver controllato che i numeri di pagina siano corretti puoi mettere in una cartella tutte le immagini che ti interessano e chiamare il programma con l'opzione ```-c``` specificando il percorso della cartella per convertire tutte le immagini in un file PDF. 
+```
+bruteforceStea.exe cartella/con/le/immagini -c
+```
+Di default il pdf viene creato ordinando le pagine numericamente in base al nome del file. Se preferisci ordinarle alfabeticamente puoi usare:
+```
+bruteforceStea.exe cartella/con/le/immagini -c a
+```
+
 *__IMPORTANTE__*: Fare doppio click sull'exe non funziona, deve essere eseguito da terminale 
 ### Aggiungere l'eseguibile a Path
 Per poter eseguire il programma senza doversi necessariamente trovare nella cartella che lo contiene è possibile aggiungerlo alla variabile d'ambiente "Path", assicurandosi che il file "pathTesseract.txt" si trovi sempre nella stessa cartella dell'eseguibile.
