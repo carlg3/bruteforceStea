@@ -155,7 +155,7 @@ def estraiEChiedi(video, titolo, ver, t = 15):
 		if coordinate == False:
 			return 1
 		elif coordinate == "NV":
-			return estraiEChiedi(video, titolo, ver, t + 15)
+			return estraiEChiedi(video, titolo, ver, t + 300)
 		else:
 			return coordinate
 
