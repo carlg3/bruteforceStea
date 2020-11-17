@@ -193,7 +193,7 @@ def spostaSlide(slideDaPrendere, pathSorgente, nuovaPathDest):
         pg = item['numeroPagina']
         shutil.move(pathSorgente + '\\' + nome, nuovaPathDest + '\\' + str(pg) + '.jpg')
         
-	s = "Sposto " , numeroSlide , " Slide in:  " , nuovaPathDest
+    s = "Sposto " , numeroSlide , " Slide in:  " , nuovaPathDest
     printCyan(s)
 
 #********************************* FUNZIONI FFMPEG E MAIN OCR *************************************************
