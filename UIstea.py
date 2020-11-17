@@ -209,8 +209,8 @@ def UI():
 		parser.add_argument("-p", "--posizioneNumeroManuale", 
 				help="Se settata l'utente puo' specificare manualmente la posizione del numero di pagina. Altrimenti viene utilizzata la posizione di default per le slide di STEA", action="store_true")
 
-		parser.add_argument("-c", "--convertiInPDF", nargs='?', const='n',
-				help="Converte tutte le immagini nella cartella specificata in un unico file PDF. Usa 'n' per ordinare le pagine numericamente in base al nome del file, 'a' per ordinarle alfabeticamete")
+		parser.add_argument("-c", "--convertiInPDF", action="store_true",
+				help="Converte tutte le immagini nella cartella specificata in un unico file PDF")
 
 		parser.add_argument("-v", "--verbose", 
 				help="Regola il livello di output del programma", action="store_true")
@@ -227,12 +227,14 @@ def UI():
 
 		videoDaElaborare = ""
 
-		if args.convertiInPDF != '':
+		if args.convertiInPDF:
+			ordinamento = 'n'
+			'''
 			ordinamento = args.convertiInPDF 
 			if ordinamento != 'n' and ordinamento != 'a':
 				a = input("Opzione non valida, premere INVIO per uscire")
 				sys.exit(1)
-
+			'''
 			if os.path.isdir(args.percorso):
 				convertiInPDF(args.percorso, ordinamento)
 			else:
