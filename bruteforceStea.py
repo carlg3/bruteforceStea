@@ -42,6 +42,80 @@ verbosity = False
 ############ FUNZIONI DI CONTROLLO E GESTIONE ##########################
 ########################################################################
 
+def slideHASH(cartella_lezioni, cartella_frame):
+    dirname,name = os.path.split(cartella_lezioni)
+    filename = os.path.splitext(os.path.basename(cartella_lezioni))[0]
+
+    if os.path.isfile(cartella_lezioni):
+        pathSlideLezioni = dirname + '\\' + 'Slides' # destinatario
+    else:
+        pathSlideLezioni = cartella_lezioni + '\\' + 'Slides'
+
+    # crea cartella per le Slide di tutte le lezioni
+    try:
+        os.mkdir(pathSlideLezioni)
+    except FileExistsError:
+        pass  
+
+    if os.path.isfile(cartella_lezioni):
+        doHASH(dirname,cartella_frame,filename,pathSlideLezioni)
+    else:
+        for dataLezione in os.listdir(cartella_frame): # dataLezione e' il nome della cartella (e.g. "2020-10-08 (1)")
+            doHASH(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni)
+
+def controllaHASH(url_pic):
+    imagehash.average_hash(Image.open(url_pic))
+
+def spostaConfronto(daSpostare):
+    pathSlides = cartella_frame + '\\' + nome_lezione
+    shutil.move(pathSorgente + '\\' + nome, nuovaPathDest + '\\' + str(pg) + '.jpg')
+
+def prendiNonSimili(cartella_lezioni,cartella_frame,dataLezione):
+    
+    # prendo nella cartella i frame
+    # confronto a due a due
+    # sposto
+    CONFRONTO = # primo frame
+    for frame_iesimo in cartella:
+        if controllaHASH(CONFRONTO, frame_iesimo) == false:
+            spostaConfronto(CONFRONTO)
+            CONFRONTO = frame_iesimo
+
+def doHASH(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni):
+    # uguale a prima solo che ritaglio prima di fare l'hash
+    pathLezione = cartella_frame + '\\' + dataLezione # la cartella che contiene i frame della lezione
+    if os.path.isdir(pathLezione):
+        printCyan("Sto organizzando la lezione " + dataLezione + ".\nMettiti comodo, leggi un libro e fatti un bel tè caldo. Ci vorra un po'.\n")
+        pathSlideLezione = pathSlideLezioni + '\\' + dataLezione
+        # printNormal("pathSlideLezione    " + pathSlideLezione)
+        try:
+            os.mkdir(pathSlideLezione)
+        except FileExistsError:
+            if len(os.listdir(pathSlideLezione)) == 0:
+                pass
+            else:
+                printWarning("La cartella per "+ dataLezione + " c'e' gia' e non e' vuota, quindi passo oltre.")
+
+        prendiNonSimili(cartella_lezioni,cartella_frame,dataLezione)
+        
+cartella_lezioni
+cartella_frame
+dataLezione
+-----
+pathLezione == cartella_frame + '\\' + dataLezione
+pathSlideLezione == pathSlideLezioni + '\\' + dataLezione
+#        slide1 = organizzaSlide(cartella_lezioni,cartella_frame,dataLezione)
+#        slide2 = .. # prendiUltimeSlide(slide1)
+#
+#        if slide2 == False:
+#            printError("\n C'e' stato un problema con le Slide di "+ dataLezione + "!\nControlla che non siano quelle di esercitazione Assembly e nel caso toglile, non ci sono slide e al programma questa cosa non piace\n") # se slide2 è false, quindi c'è stato qualche problema
+#        else:
+#            spostaSlide(slide2, pathLezione, pathSlideLezione)
+            # printNormal(pathSlideLezione)
+            # ritagliaImmaginiInCartella(pathSlideLezione)
+            # ritagliaImmaginiInCartella(pathSlideLezione+'\\'+'NonClassificate')
+
+
 def ritagliaImmaginiInCartella(cartella):
 
     if not os.path.isdir(cartella):
@@ -63,6 +137,7 @@ def ritagliaImmaginiInCartella(cartella):
                         cv2.imwrite(root +'\\'+ nomeFile + ".jpg", cropped)
                     except TypeError:
                         pass
+
 
 def controlloNumero(arrText):
     txt = arrText.split()
@@ -130,15 +205,15 @@ def organizzaSlide(cartella_lezioni,cartella_frame,nome_lezione):
     with IncrementalBar('', max=len(os.listdir(pathSlides)), suffix='%(index)d/%(max)d [%(elapsed_td)s/%(eta_td)s]') as bar:
         for i,nome_file in enumerate(os.listdir(pathSlides)):
             bar.next()
-        
-            numeroP = trovaPaginaSlide(pathSlides+'\\'+nome_file)
 
-            if(numeroP == 'NC'):
-                numeroP = numeroP + str(i)
+            # numeroP = trovaPaginaSlide(pathSlides+'\\'+nome_file)
+
+            # if(numeroP == 'NC'):
+            #    numeroP = numeroP + str(i)
 
             elemento = {
                 "nomeFile" : nome_file,
-                "numeroPagina" : numeroP
+                "numeroPagina" : i # prima era numeroP
             }
 
             if type(elemento["numeroPagina"]) is str:
@@ -150,7 +225,7 @@ def organizzaSlide(cartella_lezioni,cartella_frame,nome_lezione):
 
     # GESTISCO LE PAGINE NON CLASSIFICATE
     pathFrameLezione = cartella_frame + '\\' + nome_lezione
-    pathSlideLezioneNC = cartella_lezioni + '\\' + 'Slides' + '\\' + nome_lezione + '\\' + 'nonClassificate'
+    # pathSlideLezioneNC = cartella_lezioni + '\\' + 'Slides' + '\\' + nome_lezione + '\\' + 'nonClassificate'
 
     try:
         os.mkdir(pathSlideLezioneNC)
@@ -161,7 +236,7 @@ def organizzaSlide(cartella_lezioni,cartella_frame,nome_lezione):
     printNormal("newFolderPath2   " + pathSlideLezioneNC)
     printNormal("nome_lezione   " + nome_lezione)
     '''
-    spostaSlide(tutteNonclassificate,pathFrameLezione,pathSlideLezioneNC)
+    # spostaSlide(tutteNonclassificate,pathFrameLezione,pathSlideLezioneNC)
 
     # GESTISCO LE CLASSIFICATE
     tutteClassificate.sort(key=lambda x: x["numeroPagina"]) # sort per numero pagina crescente
@@ -216,7 +291,6 @@ def doFFMPEG(secondi,filenamePath,cartella_frame):
        os.system('ffmpeg -ss 00:00:00 -i "%s" -start_number 0 %s -vf fps=1/%s "%s\out_%%03d.jpg" ' %(filenamePath, loglevel, secondi, newPath)) #% e.g. -r 1/25 1 frame ogni 25 secondi
     else:
        printWarning("La cartella per " + nome + " c'e' gia' e non e' vuota, quindi passo oltre.")
-
 
 def estraiFrames(secondi, cartella_lezioni, cartella_frame):
     # creo cartella TEMP
@@ -279,7 +353,6 @@ def slideOCR(cartella_lezioni, cartella_frame):
             doOCR(cartella_lezioni,cartella_frame,dataLezione,pathSlideLezioni)
       
 def controllaTesseract():
-
     if not os.path.isfile(percorsoTesseract):
         printError("\nSembra che tu non abbia installato Tessract o che il percorso specificato in " + percorsoTesseract +" non sia valido, controlla e riprova\n")
         sys.exit(1)
@@ -336,7 +409,9 @@ def main():
     # SECONDA PARTE - ESTRAGGO FRAME
     estraiFrames(tempo,pathOL,pathFrameLezioni)
     # TERZA ED ULTIMA - LE ORGANIZZO E SALVO
-    slideOCR(pathOL,pathFrameLezioni)
+    # slideOCR(pathOL,pathFrameLezioni)
+
+    slideHASH(pathOL,pathFrameLezioni)
 
     printGood("Ho fatto tutto, non ti resta che controllare e sistemare le Non Classificate e creare il pdf delle slide.\n Se vuoi puoi cancellare la cartella \"temp\"")
 
