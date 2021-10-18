@@ -8,11 +8,11 @@ Un programma per prendere le slide che vengono mostrate a video durante le lezio
                                                                             
 ## Come funziona?                                                                    
                                                                             
-Il programma prende in ingresso un video o una cartella contenete uno o più video, estrae da ciascun video un frame ogni n-secondi (vedere l'utilizzo dell'opzione --intervallo) e tenta di organizzare per numero di pagina i frame estratti ritagliando le immagini all'area specificata dall'utente e scegliendo sempre la versione più aggiornata di ogni frame fra quelle disponibili.                                                               
+Il programma prende in ingresso un video o una cartella contenete uno o più video, estrae da ciascun video un frame ogni n-secondi (vedere l'utilizzo dell'opzione --intervallo) e tenta di organizzare per numero di pagina i frame estratti ritagliando le immagini all'area specificata dall'utente e scegliendo sempre la versione più aggiornata di ogni pagina fra quelle disponibili.                                                               
                                                                             
 ----------------------------------------------------------------------------------
                                                                             
-L'utente deve selezionare la regione frame che intende ritagliare e eventualmente la porzione contente il numero di pagina, in caso questa non fosse specificata verrà usata una regione di default (valida per i video di Microsoft Stream).                                    
+L'utente deve selezionare la regione frame che intende ritagliare e eventualmente la porzione contente il numero di pagina, in caso questa non fosse specificata verrà usata una regione di default.                                    
                                                                             
 ----------------------------------------------------------------------------------
                                                                             
